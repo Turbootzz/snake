@@ -87,6 +87,23 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.cell {
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  background-color: rgb(179, 179, 179);
+  display: inline-block;
+  font-size: 5px;
+}
+
+/* Positie van cell */
+/*
+ #x1y6 {
+  background-color: green;
+} */
+
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
