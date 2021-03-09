@@ -94,6 +94,7 @@ textarea {
   background-color: rgb(179, 179, 179);
   display: inline-block;
   font-size: 5px;
+  line-height: 595%;
 }
 
 /* Positie van cell */
