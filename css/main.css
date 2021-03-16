@@ -87,6 +87,13 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+
+#board{
+  display:inline;
+  background-color:  #aaaaaa;
+}
+
+
 .cell {
   width: 20px;
   height: 20px;
@@ -95,6 +102,16 @@ textarea {
   display: inline;
   float: left;
   font-size: 5px;
+}
+
+.bodySnake {
+  background-color: green;
+  border-radius: 50%;
+}
+
+.food {
+  background-color: yellow;
+  border-radius: 50%;
 }
 
 /* Positie van cell */
