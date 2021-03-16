@@ -6,6 +6,9 @@ let foodIsEaten = true;
 let snakePosition = { x: Math.floor((boardSize - 1) / 2), y: Math.floor((boardSize - 1) / 2) };
 let foodPosition = {x:0,y:0};
 
+let snakePositions = [];
+snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
+
 //het board
 function drawBoard() {
     for (let j = 0; j < boardSize; j++) {
@@ -52,6 +55,9 @@ function updatesnakePosition() {
     if (direction == "left") {
         snakePosition.x = snakePosition.x - 1;
     }
+
+    snakePositions.shift();
+    snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
 }
 
 //resetGame
@@ -69,8 +75,13 @@ function collisionCheck() {
 
 
 function drawSnake() {
-    let snakeHeadsnakePosition = "x" + snakePosition.x + "y" + snakePosition.y;
-    document.getElementById(snakeHeadsnakePosition).className += " bodySnake";
+    // let snakeHeadsnakePosition = "x" + snakePosition.x + "y" + snakePosition.y;
+    // document.getElementById(snakeHeadsnakePosition).className += " bodySnake";
+    
+    for(let i=0;i<snakePositions.length;i++){
+        //console.log(snakePositions);
+        document.getElementById(snakePositions[i]).className += " bodySnake";
+    }
 }
 
 
@@ -87,6 +98,16 @@ function drawFood() {
     document.getElementById(foodPositionID).className += " food";
 }
 
+//wat er gebeurd als de snake food eet.
+function snakeEatsFood() {
+    if (snakePosition.x == foodPosition.x && snakePosition.y == foodPosition.y) {
+        //console.log("yum");
+        foodIsEaten = true;
+        snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
+    }
+
+}
+
 
 //Game
 function gameLoop()
@@ -96,6 +117,7 @@ function gameLoop()
     clearBoard();
     drawFood();
     drawSnake();
+    snakeEatsFood();
 }
 
 //game start
