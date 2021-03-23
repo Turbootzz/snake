@@ -1,3 +1,5 @@
+//TODO game online zetten
+//snake sneller maken
 let boardSize = 15;
 let board = document.getElementById("board");
 let keyboardInput = document.getElementById("keyboardInput");
@@ -78,10 +80,19 @@ function drawSnake() {
     // let snakeHeadsnakePosition = "x" + snakePosition.x + "y" + snakePosition.y;
     // document.getElementById(snakeHeadsnakePosition).className += " bodySnake";
     
-    for(let i=0;i<snakePositions.length;i++){
-        //console.log(snakePositions);
+    for (let i = 0; i < snakePositions.length; i++) {
+        if (i == 0) {
+            //TODO: hoofd wordt getekend
+        }
+        if (i == snakePositions.length - 1) {
+            //TODO: staart wordt getekend
+        }
+        //console.log(snakePositions[i]);
         document.getElementById(snakePositions[i]).className += " bodySnake";
     }
+
+    document.getElementById("keyboardInput").innerHTML = snakePositions.length;
+
 }
 
 
@@ -108,22 +119,29 @@ function snakeEatsFood() {
 
 }
 
-
 //Game
-function gameLoop()
-{
+let timeCounter = 0;
+function gameLoop() {
     updatesnakePosition();
     collisionCheck();
     clearBoard();
     drawFood();
     drawSnake();
     snakeEatsFood();
+    timeCounter++;
+    var timeoutTime = 550 - snakePositions.length * 30 - timeCounter / 2;
+    if (timeoutTime < 100) {
+        timeoutTime = 100;
+    }
+    console.log(timeoutTime);
+    setTimeout(gameLoop, timeoutTime);
 }
 
 //game start
 
 drawBoard(); //tekent het board
-setInterval(gameLoop, 500);
+
+setTimeout(gameLoop, 0);
 
 //keyboard controls
 window.addEventListener("keydown", function (event) {
