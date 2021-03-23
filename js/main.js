@@ -11,6 +11,21 @@ let foodPosition = {x:0,y:0};
 let snakePositions = [];
 snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
 
+function collisionCheck() {
+    //checkt of de slang buiten het speelveld komt
+    if (snakePosition.x < 0 || snakePosition.y < 0 || snakePosition.x > boardSize - 1 || snakePosition.y > boardSize - 1) { resetGame() }
+    //checken of slag zichzelf raakt
+    let snakePositionControle = "x"+snakePosition.x+"y"+snakePosition.y;
+    for(let i=0;i<snakePositions.length-1;i++)
+    {
+        if (snakePositionControle==snakePositions[i])
+        {
+            console.log("Botst tegen eigen lichaam");
+            resetGame();
+        }
+    }
+}
+
 //het board
 function drawBoard() {
     for (let j = 0; j < boardSize; j++) {
@@ -45,16 +60,16 @@ function clearBoard() {
 //update de positie
 
 function updatesnakePosition() {
-    if (direction == "up") {
+    if (direction == 1) {
         snakePosition.y = snakePosition.y - 1;
     }
-    if (direction == "down") {
+    if (direction == 2) {
         snakePosition.y = snakePosition.y + 1;
     }
-    if (direction == "right") {
+    if (direction == 3) {
         snakePosition.x = snakePosition.x + 1;
     }
-    if (direction == "left") {
+    if (direction == 4) {
         snakePosition.x = snakePosition.x - 1;
     }
 
@@ -85,12 +100,13 @@ function drawSnake() {
             //TODO: hoofd wordt getekend
         }
         if (i == snakePositions.length - 1) {
-            //TODO: staart wordt getekend
+            //Slang getekent
+            document.getElementById(snakePositions[i]).className += " bodyHead";
+            document.getElementById(snakePositions[i]).className += " bodyDirection" + direction;
         }
         //console.log(snakePositions[i]);
         document.getElementById(snakePositions[i]).className += " bodySnake";
     }
-
     document.getElementById("keyboardInput").innerHTML = snakePositions.length;
 
 }
@@ -133,7 +149,7 @@ function gameLoop() {
     if (timeoutTime < 100) {
         timeoutTime = 100;
     }
-    console.log(timeoutTime);
+    //console.log(timeoutTime);
     setTimeout(gameLoop, timeoutTime);
 }
 
@@ -147,16 +163,24 @@ setTimeout(gameLoop, 0);
 window.addEventListener("keydown", function (event) {
 
     if (event.key == "ArrowUp") {
-        direction = "up";
+        if (direction != 2) {
+            direction = 1;
+        }
     }
     if (event.key == "ArrowDown") {
-        direction = "down";
+        if (direction != 1) {
+            direction = 2;
+        }
     }
     if (event.key == "ArrowRight") {
-        direction = "right";
+        if (direction != 4) {
+            direction = 3;
+        }
     }
     if (event.key == "ArrowLeft") {
-        direction = "left";
+        if (direction != 3) {
+            direction = 4;
+        }
     }
 
 keyboardInput.innerHTML = "direction: " + direction;
