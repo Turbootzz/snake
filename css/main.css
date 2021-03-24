@@ -89,16 +89,28 @@ textarea {
    ========================================================================== */
 
 body {
-  max-width: 500px;
   margin: auto;
   background-color: rgb(44, 39, 70);
-  
+  max-width: 500px;
+  width: 100%;
 }
 
 #board{
+  margin: auto;
   display:inline;
   background-color:  #aaaaaa;
-  
+  width: 40%;
+  min-width: 100px;
+}
+
+#score {
+  display: inline-block;
+}
+
+#keyboardInput {
+  display: inline-block;
+  width: 26%;
+  min-width: 50px;
 }
 
 /* #keyboardInput {
@@ -114,56 +126,63 @@ body {
   float: left;
   font-size: 5px;
   padding-top: 2.2px;
-
+  
 }
 
 .bodySnake {
-  background-color: green;
-  border-radius: 50%;
+  background-color: rgb(42, 155, 42);
+  /* border-radius: 50%; */
 }
 
 .food {
   background-color: yellow;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 .bodyHead{
   background-color:  rgba(0,0,0,0);
   border: none;
-  background-image: url(../img/snake_head.png);
+  background-image: url(../img/snake_head_beter.png);
   background-size: contain;
+  padding-top: 2.2px;
 }
 .bodyTail{
   background-color:  rgba(0,0,0,0);
   border: none;
-  background-image: url(../img/snake_tail.png);
+  background-image: url(../img/snake_tail_beter.png);
   background-size: contain;
+  
 }
 /*hoofd*/
 .bodyHeadDirection1{
-  transform: rotate(180deg);
+  background-image: url(../img/snake_head_beter_b.png);
 }
 .bodyHeadDirection2{
-  transform: rotate(0deg);
+  background-image: url(../img/snake_head_beter.png);
 }
 .bodyHeadDirection3{
-  transform: rotate(270deg);
+  background-image: url(../img/snake_head_beter_r.png);
+  
 }
 .bodyHeadDirection4{
-  transform: rotate(-270deg);
+  background-image: url(../img/snake_head_beter_l.png);
 }
 /*staart */
 .bodyTailDirection1{
-  transform: rotate(180deg);
+  /* transform: rotate(180deg); */
+  background-image: url(../img/snake_tail_beter.png);
 }
 .bodyTailDirection2{
-  transform: rotate(0deg);
+  /* transform: rotate(0deg); */
+  background-image: url(../img/snake_tail_beter.png);
 }
 .bodyTailDirection3{
-  transform: rotate(270deg);
+  /* transform: rotate(270deg); */
+  background-image: url(../img/snake_tail_beter.png);
 }
 .bodyTailDirection4{
-  transform: rotate(-270deg);
+  /* transform: rotate(-270deg); */
+  background-image: url(../img/snake_tail_beter.png);
 }
 
 

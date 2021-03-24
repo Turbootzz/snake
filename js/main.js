@@ -1,5 +1,5 @@
-//TODO game online zetten
-//snake sneller maken
+//DONE: game online zetten
+//DONE: snake sneller maken
 let boardSize = 15;
 let board = document.getElementById("board");
 let keyboardInput = document.getElementById("keyboardInput");
@@ -10,19 +10,6 @@ let foodPosition = { x: 0, y: 0 };
 
 let snakePositions = [];
 snakePositions.push("x" + snakePosition.x + "y" + snakePosition.y);
-
-function collisionCheck() {
-    //checkt of de slang buiten het speelveld komt
-    if (snakePosition.x < 0 || snakePosition.y < 0 || snakePosition.x > boardSize - 1 || snakePosition.y > boardSize - 1) { resetGame() }
-    //checken of slag zichzelf raakt
-    let snakePositionControle = "x" + snakePosition.x + "y" + snakePosition.y;
-    for (let i = 0; i < snakePositions.length - 1; i++) {
-        if (snakePositionControle == snakePositions[i]) {
-            console.log("Botst tegen eigen lichaam");
-            resetGame();
-        }
-    }
-}
 
 //het board
 function drawBoard() {
@@ -80,12 +67,26 @@ function updatesnakePosition() {
 function resetGame() {
     direction = 0;
     snakePosition = { x: Math.floor((boardSize - 1) / 2), y: Math.floor((boardSize - 1) / 2) };
+    snakePositions = [];
+    snakePositions.push("x" + snakePosition.x + "y" + snakePosition.y);
 }
 
 //gameOver
 
 function collisionCheck() {
     if (snakePosition.x < 0 || snakePosition.y < 0 || snakePosition.x > boardSize - 1 || snakePosition.y > boardSize - 1) { resetGame() }
+
+    //checkt of de slang eigen lichaam raakt.
+    let snakePositionControle = "x"+snakePosition.x+"y"+snakePosition.y;
+    
+    for(let i=0;i<snakePositions.length-1;i++)
+    {
+        if (snakePositionControle==snakePositions[i])
+        {
+            //console.log("raakt lichaam!");
+            resetGame();
+        }
+    }
 }
 
 
@@ -107,7 +108,7 @@ function drawSnake() {
         //console.log(snakePositions[i]);
         document.getElementById(snakePositions[i]).className += " bodySnake";
     }
-    document.getElementById("keyboardInput").innerHTML = "<span style='color:cornsilk;'>Score: " + snakePositions.length + "</span>";
+    document.getElementById("score").innerHTML = "<span style='color:cornsilk; margin-left:115px;'>Score: " + snakePositions.length + "</span>";
 
 
 }
@@ -146,11 +147,11 @@ function gameLoop() {
     drawSnake();
     snakeEatsFood();
     timeCounter++;
-    var timeoutTime = 550 - snakePositions.length * 30 - timeCounter / 2;
+    var timeoutTime = 450 - snakePositions.length * 30 - timeCounter / 2;
     if (timeoutTime < 100) {
         timeoutTime = 100;
     }
-    //console.log(timeoutTime);
+    // console.log(timeoutTime);
     setTimeout(gameLoop, timeoutTime);
 }
 
@@ -184,5 +185,5 @@ window.addEventListener("keydown", function (event) {
         }
     }
 
-    keyboardInput.innerHTML = "<span style='color:cornsilk; margin-left:260px;'>Key: " + direction + "</span>";
+    keyboardInput.innerHTML = "<span style='color:cornsilk;'>Key: " + event.key + "</span>";
 }, true);
