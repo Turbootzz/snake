@@ -84,7 +84,7 @@ function collisionCheck() {
         if (snakePositionControle==snakePositions[i])
         {
             //console.log("raakt lichaam!");
-            resetGame();
+            resetGame(timeoutTime = 500);
         }
     }
 }
@@ -147,10 +147,11 @@ function gameLoop() {
     drawSnake();
     snakeEatsFood();
     timeCounter++;
-    var timeoutTime = 450 - snakePositions.length * 30 - timeCounter / 2;
-    if (timeoutTime < 100) {
-        timeoutTime = 100;
+    var timeoutTime = 450 - snakePositions.length * 15 - timeCounter / 2;
+    if (timeoutTime < 50) {
+        timeoutTime = 50;
     }
+    
     document.getElementById("speed").innerHTML = "<span style='color:cornsilk; margin-left:160px;'>Speed: " + timeoutTime + "</span>";
     // console.log(timeoutTime);
     setTimeout(gameLoop, timeoutTime);

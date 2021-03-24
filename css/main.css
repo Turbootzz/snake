@@ -99,8 +99,8 @@ body {
   margin: auto;
   display:inline;
   background-color:  #aaaaaa;
-  width: 40%;
-  min-width: 100px;
+  width: 60%;
+  min-width: 60px;
 }
 
 #score {
@@ -121,7 +121,7 @@ body {
 } */
 
 .cell {
-  width: 20px;
+  width: 4%;
   height: 20px;
   background-color: rgb(179, 179, 179);
   display: inline;
@@ -187,7 +187,12 @@ body {
   background-image: url(../img/snake_tail_beter.png);
 }
 
-
+#warning {
+  color:cornsilk;
+  float:inline-end;
+  font-size: 9px;
+  float: right;
+}
 
 /* Positie van cell */
 /*
