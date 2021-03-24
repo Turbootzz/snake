@@ -6,20 +6,18 @@ let keyboardInput = document.getElementById("keyboardInput");
 let direction = 0
 let foodIsEaten = true;
 let snakePosition = { x: Math.floor((boardSize - 1) / 2), y: Math.floor((boardSize - 1) / 2) };
-let foodPosition = {x:0,y:0};
+let foodPosition = { x: 0, y: 0 };
 
 let snakePositions = [];
-snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
+snakePositions.push("x" + snakePosition.x + "y" + snakePosition.y);
 
 function collisionCheck() {
     //checkt of de slang buiten het speelveld komt
     if (snakePosition.x < 0 || snakePosition.y < 0 || snakePosition.x > boardSize - 1 || snakePosition.y > boardSize - 1) { resetGame() }
     //checken of slag zichzelf raakt
-    let snakePositionControle = "x"+snakePosition.x+"y"+snakePosition.y;
-    for(let i=0;i<snakePositions.length-1;i++)
-    {
-        if (snakePositionControle==snakePositions[i])
-        {
+    let snakePositionControle = "x" + snakePosition.x + "y" + snakePosition.y;
+    for (let i = 0; i < snakePositions.length - 1; i++) {
+        if (snakePositionControle == snakePositions[i]) {
             console.log("Botst tegen eigen lichaam");
             resetGame();
         }
@@ -74,7 +72,7 @@ function updatesnakePosition() {
     }
 
     snakePositions.shift();
-    snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
+    snakePositions.push("x" + snakePosition.x + "y" + snakePosition.y);
 }
 
 //resetGame
@@ -94,29 +92,32 @@ function collisionCheck() {
 function drawSnake() {
     // let snakeHeadsnakePosition = "x" + snakePosition.x + "y" + snakePosition.y;
     // document.getElementById(snakeHeadsnakePosition).className += " bodySnake";
-    
+
     for (let i = 0; i < snakePositions.length; i++) {
-        if (i == 0) {
-            //TODO: hoofd wordt getekend
-        }
         if (i == snakePositions.length - 1) {
-            //Slang getekent
+
             document.getElementById(snakePositions[i]).className += " bodyHead";
-            document.getElementById(snakePositions[i]).className += " bodyDirection" + direction;
+            document.getElementById(snakePositions[i]).className += " bodyHeadDirection" + direction;
         }
+        if (i == 0) {
+            document.getElementById(snakePositions[i]).className += " bodyTail";
+            document.getElementById(snakePositions[i]).className += " bodyTailDirection" + direction;
+        }
+        
         //console.log(snakePositions[i]);
         document.getElementById(snakePositions[i]).className += " bodySnake";
     }
-    document.getElementById("keyboardInput").innerHTML = snakePositions.length;
+    document.getElementById("keyboardInput").innerHTML = "<span style='color:cornsilk;'>Score: " + snakePositions.length + "</span>";
+
 
 }
 
 
- //teken het food
+//teken het food
 function drawFood() {
     if (foodIsEaten) {
-        let xRandom = Math.floor(Math.random() * (boardSize-1));
-        let yRandom = Math.floor(Math.random() * (boardSize-1));
+        let xRandom = Math.floor(Math.random() * (boardSize - 1));
+        let yRandom = Math.floor(Math.random() * (boardSize - 1));
         foodPosition.x = xRandom;
         foodPosition.y = yRandom;
         foodIsEaten = false;
@@ -130,7 +131,7 @@ function snakeEatsFood() {
     if (snakePosition.x == foodPosition.x && snakePosition.y == foodPosition.y) {
         //console.log("yum");
         foodIsEaten = true;
-        snakePositions.push("x"+snakePosition.x+"y"+snakePosition.y);
+        snakePositions.push("x" + snakePosition.x + "y" + snakePosition.y);
     }
 
 }
@@ -183,5 +184,5 @@ window.addEventListener("keydown", function (event) {
         }
     }
 
-keyboardInput.innerHTML = "direction: " + direction;
+    keyboardInput.innerHTML = "<span style='color:cornsilk; margin-left:260px;'>Key: " + direction + "</span>";
 }, true);

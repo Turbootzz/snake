@@ -48,6 +48,7 @@ hr {
   border-top: 1px solid #ccc;
   margin: 1em 0;
   padding: 0;
+  
 }
 
 /*
@@ -87,21 +88,33 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+body {
+  max-width: 500px;
+  margin: auto;
+  background-color: rgb(44, 39, 70);
+  
+}
 
 #board{
   display:inline;
   background-color:  #aaaaaa;
+  
 }
 
+/* #keyboardInput {
+  border:cornsilk;
+  color:rgb(233, 186, 0);
+} */
 
 .cell {
   width: 20px;
   height: 20px;
-  border: 1px solid black;
   background-color: rgb(179, 179, 179);
   display: inline;
   float: left;
   font-size: 5px;
+  padding-top: 2.2px;
+
 }
 
 .bodySnake {
@@ -116,24 +129,44 @@ textarea {
 
 .bodyHead{
   background-color:  rgba(0,0,0,0);
-  border-radius: 50%;
   border: none;
   background-image: url(../img/snake_head.png);
   background-size: contain;
 }
-
-.bodyDirection1{
+.bodyTail{
+  background-color:  rgba(0,0,0,0);
+  border: none;
+  background-image: url(../img/snake_tail.png);
+  background-size: contain;
+}
+/*hoofd*/
+.bodyHeadDirection1{
   transform: rotate(180deg);
 }
-.bodyDirection2{
+.bodyHeadDirection2{
   transform: rotate(0deg);
 }
-.bodyDirection3{
+.bodyHeadDirection3{
   transform: rotate(270deg);
 }
-.bodyDirection4{
+.bodyHeadDirection4{
   transform: rotate(-270deg);
 }
+/*staart */
+.bodyTailDirection1{
+  transform: rotate(180deg);
+}
+.bodyTailDirection2{
+  transform: rotate(0deg);
+}
+.bodyTailDirection3{
+  transform: rotate(270deg);
+}
+.bodyTailDirection4{
+  transform: rotate(-270deg);
+}
+
+
 
 /* Positie van cell */
 /*
