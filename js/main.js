@@ -108,7 +108,7 @@ function drawSnake() {
         //console.log(snakePositions[i]);
         document.getElementById(snakePositions[i]).className += " bodySnake";
     }
-    document.getElementById("score").innerHTML = "<span style='color:cornsilk; margin-left:115px;'>Score: " + snakePositions.length + "</span>";
+    document.getElementById("score").innerHTML = "<span style='color:cornsilk;'>Score: " + snakePositions.length + "</span>";
 
 
 }
@@ -151,6 +151,7 @@ function gameLoop() {
     if (timeoutTime < 100) {
         timeoutTime = 100;
     }
+    document.getElementById("speed").innerHTML = "<span style='color:cornsilk; margin-left:160px;'>Speed: " + timeoutTime + "</span>";
     // console.log(timeoutTime);
     setTimeout(gameLoop, timeoutTime);
 }

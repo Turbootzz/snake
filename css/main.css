@@ -106,9 +106,11 @@ body {
 #score {
   display: inline-block;
 }
+#speed {
+  display: inline-block;
+}
 
 #keyboardInput {
-  display: inline-block;
   width: 26%;
   min-width: 50px;
 }
